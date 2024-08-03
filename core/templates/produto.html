@@ -1,0 +1,46 @@
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contato</title>
+  {% bootstrap_css %}
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}">Minha Loja</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'index' %}">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contato' %}">Contato</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'produto' %}">Criar Produto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'buscar_produto' %}">Buscar Produto</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  <div class="container">
+    <h1>Cadastrar novo Produto</h1>
+    <form action="{% url 'produto' %}" method="post" class="form" autocomplete="off" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      {% buttons %}
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      {% endbuttons %}
+    </form>
+  </div>
+  {% bootstrap_javascript jquery='full' %}
+</body>
+</html>

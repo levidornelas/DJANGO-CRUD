@@ -1,0 +1,73 @@
+
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
+  {% bootstrap_css %}
+</head>
+<body>
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="{% url 'index' %}">Minha Loja</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'index' %}">Início</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contato' %}">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'produto' %}">Criar Produto</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'buscar_produto' %}">Buscar Produto</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  <div class="container">
+    {% if produtos %}
+      <h1>Produtos disponíveis</h1>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Produto</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Editar</th>
+            <th>Deletar</th>
+          </tr>
+        </thead>
+          <tbody>
+            {% for produto in produtos %}
+              <tr>
+                <td>{{ produto.id }}</td>
+                <td> <a href="#modal{{produto.id}}" data-toggle="modal">{{ produto.nome }}</a></td>
+                <td>{{ produto.preco }}</td>
+                <td>{{ produto.estoque }}</td>
+                <td><a href="{% url 'atualizar_produto' produto.id %}" class="btn btn-primary">Editar</a></td>
+                <td><a href="{% url 'deletar_produto' produto.id %}" class="btn btn-danger">Excluir</a></td>
+              </tr>
+                <div class="modal fade bd modal-lg show" id="modal{{produto.id}}">
+                  <div class="modal-dialog">
+                    <img src="{{produto.imagem.url}}" class="img-fluid" alt="{{produto.nome}}">
+                  </div>
+                </div>
+            {% endfor %}
+          </tbody>
+      </table>
+    {% else %}
+      <h2>Ainda não existem protudos cadastrados.</h2>
+    {% endif %}
+  </div>
+  {% bootstrap_javascript jquery='full' %}
+</body>
+</html>

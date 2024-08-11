@@ -2,7 +2,7 @@ from django.db import models
 from stdimage import StdImageField
 from django.db.models import signals
 from django.template.defaultfilters import slugify
-from django.contrib.auth.models import AbstractUser
+
 # Create your models here.
 
 #Criando as Classes necessárias para o projeto:

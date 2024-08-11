@@ -9,5 +9,5 @@ urlpatterns = [
   path('buscar_produto/', buscar_produto, name='buscar_produto'),
   path('produto/deletar/<int:produto_id>', deletar_produto, name='deletar_produto'),
   path('check_login/', criar_produto, name='check_login'),
-  path('atualizar_produto/<int:produto_id>/', atualizar_produto, name='atualizar_produto')
+  path('atualizar_produto/<int:produto_id>/', atualizar_produto, name='atualizar_produto'),
 ]
